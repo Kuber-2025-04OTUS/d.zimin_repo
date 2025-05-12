@@ -4,21 +4,23 @@ metadata:
   name: nginx-ingress
   namespace: homework
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
+  ingressClassName: nginx
   rules:
     - host: "homework.otus"
       http:
         paths:
-          - path: /homepage
-            pathType: Exact
+          - path: /homework(/|$)(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: nginx-service
                 port:
                   number: 80
-          - path: /index
-            pathType: Prefix
+          - path: /(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: nginx-service
