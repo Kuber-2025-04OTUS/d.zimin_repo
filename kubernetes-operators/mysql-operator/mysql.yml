@@ -1,0 +1,7 @@
+apiVersion: otus.homework/v1
+kind: MySQL
+metadata:
+  name: mysql
+  namespace: default
+spec:
+  storage_size: 1Gi
