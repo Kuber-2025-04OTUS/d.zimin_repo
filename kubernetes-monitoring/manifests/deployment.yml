@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-metrics
+  namespace: homework
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-metrics
+  template:
+    metadata:
+      labels:
+        app: nginx-metrics
+    spec:
+      containers:
+      - name: nginx
+        image: my-nginx-metrics:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+      - name: nginx-exporter
+        image: nginx/nginx-prometheus-exporter:latest
+        args:
+          - "-nginx.scrape-uri=http://localhost/metrics"
+        ports:
+          - containerPort: 9113
