@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubernetes-templating-app
+  namespace: argo-cd
+spec:
+  project: otus
+  source:
+    repoURL: https://github.com/Kuber-2025-04OTUS/d.zimin_repo.git
+    targetRevision: HEAD
+    path: kubernetes-templating/helm/nginx-chart
+    helm:
+      parameters:
+        - name: global.namespace
+          value: "homework-helm"
+        - name: replicaCount
+          value: "1"
+        - name: persistence.existingClaim
+          value: kubernetes-templating-app-nginx-chart-pvc
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: homework-helm
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+    - CreateNamespace=true
