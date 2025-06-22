@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kubernetes-templating-app
+  name: homework
   namespace: argo-cd
 spec:
   project: otus
@@ -15,8 +15,8 @@ spec:
           value: "homework-helm"
         - name: replicaCount
           value: "1"
-        - name: persistence.existingClaim
-          value: kubernetes-templating-app-nginx-chart-pvc
+        - name: storageClassName
+          value: "yc-network-hdd"
   destination:
     server: https://kubernetes.default.svc
     namespace: homework-helm
