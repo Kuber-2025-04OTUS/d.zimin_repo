@@ -15,8 +15,8 @@ spec:
           value: "homework-helm"
         - name: replicaCount
           value: "1"
-        - name: storageClassName
-          value: "yc-network-hdd"
+        - name: persistentVolumeClaim.storageClassName
+          value: ""
   destination:
     server: https://kubernetes.default.svc
     namespace: homework-helm

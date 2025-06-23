@@ -7,8 +7,9 @@ if [ "$1" = "i" ]; then
     helm repo add argo https://argoproj.github.io/argo-helm 2>/dev/null || true
     helm repo update
     helm upgrade --install argocd argo/argo-cd \
-      --namespace argo-cd --create-namespace \
-      --values "values.yml"
+      --namespace argo-cd \
+      --create-namespace \
+      --values "./manifests/values.yml"
 
     # https://github.com/kubernetes/ingress-nginx
     helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
