@@ -146,6 +146,9 @@ volumeMounts:
     mountPath: /homework/conf
     readOnly: true
 
+persistentVolumeClaim:
+  storageClassName: "homework-nginx-chart-sc"
+
 nodeSelector:
   homework: "true"
 

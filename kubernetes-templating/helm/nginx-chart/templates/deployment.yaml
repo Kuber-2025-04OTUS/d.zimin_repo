@@ -44,6 +44,8 @@ spec:
           command: ["/bin/sh", "-c"]
           args:
             - |
+              mkdir -p /init
+              chmod 777 /init
               cp -v /tmp/index.html /init/index.html
           volumeMounts:
             - name: cfg-index

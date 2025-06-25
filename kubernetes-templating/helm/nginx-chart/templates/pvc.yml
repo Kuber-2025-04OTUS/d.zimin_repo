@@ -5,7 +5,7 @@ metadata:
   name: {{ include "nginx-chart.fullname" . }}-pvc
   namespace: {{ .Values.global.namespace }}
 spec:
-  storageClassName: {{ include "nginx-chart.fullname" . }}-sc
+  storageClassName: {{ .Values.persistentVolumeClaim.storageClassName }}
   accessModes:
     - ReadWriteOnce
   resources:
