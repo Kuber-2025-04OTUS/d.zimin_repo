@@ -1,0 +1,14 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: yc-s3-storage-class
+provisioner: ru.yandex.s3.csi
+parameters:
+  csi.storage.k8s.io/provisioner-secret-name: yc-s3-secret
+  csi.storage.k8s.io/provisioner-secret-namespace: homework
+  csi.storage.k8s.io/node-stage-secret-name: yc-s3-secret
+  csi.storage.k8s.io/node-stage-secret-namespace: homework
+  mounter: geesefs
+  bucket: loki-logs-s3-homework
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
