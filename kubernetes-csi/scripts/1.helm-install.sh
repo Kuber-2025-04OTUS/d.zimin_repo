@@ -10,5 +10,5 @@ if [ "$1" = "i" ]; then
     helm install csi-s3 yandex-s3/csi-s3 -n homework
 
 elif [ "$1" = "u" ]; then
-    helm uninstall yandex-s3 -n homework
+    helm uninstall csi-s3 -n homework
 fi
