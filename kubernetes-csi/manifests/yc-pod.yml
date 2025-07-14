@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: s3-writer
+  namespace: homework
+spec:
+  containers:
+    - name: writer
+      image: busybox
+      command: ["sh", "-c", "while true; do echo $(date) >> /mnt/data/out.txt; sleep 5; done"]
+      volumeMounts:
+        - mountPath: "/mnt/data"
+          name: s3-volume
+  volumes:
+    - name: s3-volume
+      persistentVolumeClaim:
+        claimName: s3-pvc
